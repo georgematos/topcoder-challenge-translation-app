@@ -19,8 +19,11 @@
         <div class="d-flex justify-content-center">
           <button class="btn-primary " style="width: 200px;" type="submit">Translate now</button>
         </div>
-        <div *ngIf="error !== undefined" class="alert alert-danger" style="margin-top: 10px;">
-          <p>{{ error }}</p>
+        <div *ngIf="validationError !== undefined" class="alert alert-danger" style="margin-top: 10px;">
+          <p>{{ validationError }}</p>
+        </div>
+        <div *ngIf="applicationError !== undefined" class="alert alert-danger" style="margin-top: 10px;">
+          <p>{{ applicationError }}</p>
         </div>
         <div *ngIf="response !== undefined" class="alert alert-info" style="margin-top: 10px;">
           {{ response }}

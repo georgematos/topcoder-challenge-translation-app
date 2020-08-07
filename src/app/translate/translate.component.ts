@@ -13,7 +13,8 @@ export class TranslateComponent implements OnInit {
   public languages = languages;
   public sourceLang: string;
   public response: string;
-  public error: string;
+  public validationError: string;
+  public applicationError: string;
 
   public form = new FormGroup({
     sourceText: new FormControl('', Validators.required),
@@ -29,19 +30,21 @@ export class TranslateComponent implements OnInit {
   }
 
   public translate(): void {
-    if (this.form.invalid) {
-      this.error = 'O formulário contém erros, verifique se os campos estão preenchidos';
-      this.response = undefined;
-    } else {
-      this.error = undefined;
+    this.applicationError = undefined;
+    if (!this.form.invalid) {
+      this.validationError = undefined;
       this.service.translate(
         this.form.get('sourceLang').value,
         this.form.get('targetLang').value,
         this.form.get('sourceText').value,
       ).subscribe((result) => {
-          this.response = result.sentences[0].trans;
-        }
-      );
+        this.response = result.sentences[0].trans;
+      }, (err: any) => {
+        this.applicationError = err;
+      });
+    } else {
+      this.validationError = 'O formulário contém erros, verifique se os campos estão preenchidos';
+      this.response = undefined;
     }
   }
 

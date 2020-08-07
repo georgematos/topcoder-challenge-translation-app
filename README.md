@@ -1,5 +1,7 @@
 # Translater
 
+Project created to solve my first Topcoder challenge, I chose Angular to create the app to train my skills in this technology. For using the Google Translate API, the app will present an error after some translates. The build instructions follow below.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
